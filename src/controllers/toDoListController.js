@@ -8,14 +8,13 @@ const initialController = (req, res) => {
   const response = listService.initialService();
   res.send(response);
 };
-
 const findAllList = (req, res) => {
   res.send(listService.findAllList());
 };
 
-const findTarefasById = (req, res) => {
+const findListById = (req, res) => {
   const id = parseInt(req.params.id);
-  const response = listService.findTarefasById(id);
+  const response = listService.findListById(id);
   if (response === undefined) {
     res.status(204).send({ message: 'Nenhuma Lista encontrada' });
   } else {
@@ -37,7 +36,7 @@ const updateList = (req, res) => {
 
 const deleteList = (req, res) => {
   const id = parseInt(req.params.id);
-  const response = ListService.deleteList(id);
+  const response = listService.deleteList(id);
   res.send(response);
 };
 
@@ -45,7 +44,7 @@ const deleteList = (req, res) => {
 module.exports = {
   initialController,
   findAllList,
-  findTarefasById,
+  findListById,
   createList,
   updateList,
   deleteList,

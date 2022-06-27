@@ -13,51 +13,53 @@ const toDoList = [
   },
 ];
 
-const findAllTarefas = () => paletas;
+const findAllList = () => toDoList;
 
-const findTarefaById = (id) => {
+const findListById = (id) => {
   let indice = 0;
-  const tarefaById = paletas.map((paleta, index) => {
+  const listById = toDoList.map((list, index) => {
     if (list.id === id) {
       indice = index;
       return list;
     }
   });
-  return tarefaById[indice];
+  return listById[indice];
 };
 
 const createList = (list) => {
-  list.id = uuidv4();
-  paletas.push(paleta);
-  return paletas;
+  toDoList.push(list);
+  return toDoList;
 };
 
-const updateList = (id, updateList) => {
-    toDoList.forEach((list) => {
-      if (list.id === id) {
-        list = updateList;
-      }
-    });
-    return toDoList;
-  };
-  
-  const deleteList = (id) => {
-    toDoList.forEach((list, index) => {
-      if (list.id === id) {
-        toDoList.splice(index, 1);
-      }
-    });
-  };
-  
-  const initialService = () => {
-    return 'hello world';
-  };
-  
-  module.exports = {
-    initialService,
-    findAllTarefas,
-    findTarefaById,
-    createList,
-    deleteList,
-    updateList
-  };
+const updateList = (id, updatedList) => {
+  toDoList.forEach((list, index) => {
+    if (list.id === id) {
+      updatedList.id = id;
+      toDoList[index] = updatedList;
+    }
+  });
+
+  return toDoList;
+};
+
+const deleteList = (id) => {
+  toDoList.forEach((list, index) => {
+    if (list.id === id) {
+      toDoList.splice(index, 1);
+    }
+  });
+
+};
+
+const initialService = () => {
+  return 'hello world';
+};
+
+module.exports = {
+  initialService,
+  findAllList,
+  findListById,
+  createList,
+  deleteList,
+  updateList
+};
