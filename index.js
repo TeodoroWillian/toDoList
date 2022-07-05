@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const listRoutes = require('./src/routes/toDoList.Routes');
+const listRoutes = require('./src/routes/toDoList.Route');
 
 const port = 3000;
 const app = express();

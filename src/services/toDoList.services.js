@@ -1,58 +1,33 @@
-const toDoList = [
-  {
-    id: "1",
-    descricaoTarefa: "Arrrumar a casa",
-  },
-  {
-    id: "1",
-    descricaoTarefa: "Estudar",
-  },
-  {
-    id: "1",
-    descricaoTarefa: "Módulo 3",
-  },
-];
+const List = require("../model/list");
 
-const findAllList = () => toDoList;
-
-const findListById = (id) => {
-  let indice = 0;
-  const listById = toDoList.map((list, index) => {
-    if (list.id === id) {
-      indice = index;
-      return list;
-    }
-  });
-  return listById[indice];
+const findAllList = async () => {
+  const allList = await List.find();
+  return allList;
 };
 
-const createList = (list) => {
-  toDoList.push(list);
-  return toDoList;
+const findListById = async (id) => {
+  const oneList = await List.findById(id);
+  return oneList;
 };
 
-const updateList = (id, updatedList) => {
-  toDoList.forEach((list, index) => {
-    if (list.id === id) {
-      updatedList.id = id;
-      toDoList[index] = updatedList;
-    }
-  });
-
-  return toDoList;
+const createList = async (paleta) => {
+  const createdList = await List.create(list);
+  return createdList;
 };
 
-const deleteList = (id) => {
-  toDoList.forEach((list, index) => {
-    if (list.id === id) {
-      toDoList.splice(index, 1);
-    }
+const updateList = async (id, updatedList) => {
+  const updateList = await List.findByIdAndUpdate(id, updatedList).setOptions({
+    returnOriginal: false,
   });
+  return updateList;
+};
 
+const deleteList = async (id) => {
+  return await List.findByIdAndDelete(id);
 };
 
 const initialService = () => {
-  return 'hello world';
+  return "hello world";
 };
 
 module.exports = {
@@ -61,5 +36,5 @@ module.exports = {
   findListById,
   createList,
   deleteList,
-  updateList
+  updateList,
 };
